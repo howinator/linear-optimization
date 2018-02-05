@@ -1,2 +1,2 @@
 # linear-optimization
-Optimization HW
+Optimization HW for spring 2018
