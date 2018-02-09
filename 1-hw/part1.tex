@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,algorithm,algpseudocode,algorithmicx,xfrac}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{subproblem}[1]{\textbf{(#1)}}{}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\begin{document}
+
+%\renewcommand{\qedsymbol}{\filledbox}
+%Good resources for looking up how to do stuff:
+%Binary operators: http://www.access2science.com/latex/Binary.html
+%General help: http://en.wikibooks.org/wiki/LaTeX/Mathematics
+%Or just google stuff
+
+\title{Linear Optimization - Homework 1}
+\author{Howie Benefiel \(phb337\)}
+\maketitle
+
+\begin{problem}{1}
+$ $ \newline
+From solving both cases in Gurobi, it is better to spend the extra \$400 because you make
+an extra \$4,000.
+
+\end{problem}
+
+\begin{problem}{2}
+$ $ \newline
+(ii) is hard to incorporate because of the if conditional.
+I'd solve it by solving each side of the conditional.
+\end{problem}
+
+\begin{problem}{3}
+$ $ \newline
+The results from gurobi imply that the plant manager should run process 3 three-times as long as process 2 and not run process 1 at all.
+\end{problem}
+
+\begin{problem}{4}
+$ $ \newline
+The decision variable is $x_i =$ fraction of $s_i$ sold.
+$ $ \newline
+Our maximization function is $max((1-x_i)r_i - 0.01x_iq_i - .03x_i(q_i-p_i) + x_iq_i)$
+Subject to: $x_iq_i=k$
+\end{problem}
+
+\begin{problem}{5}
+Our decision variables are $x_i =$ number of tablecloths purchased on day $i$ and
+$ y_i = $ fraction of tablecloths laundered at fast launderer on day $i$.
+
+Our goal is $$min(\sum_{i=1}^N x_i + fy_i\sum_{i=2}^N r_{i-1} + g(1-y_i)\sum_{i=2}^Nr_{i-1})$$.
+Our constraints are $$ x_i + y_{i-n}r_{i-n} + (1+y_{i-m})r_{i-m} \geq r_i: \forall N$$ where $$i - a < 0 \implies r_{i-a}=0$$
+\end{problem}
+
+\begin{problem}{6}
+This problem can be formulated network flow problem by having 3 nodes for each day, one node for dirty tablecloths, one node for clean and one node for tablecloths needed for the day.
+\end{problem}
+
+
+\end{document}
