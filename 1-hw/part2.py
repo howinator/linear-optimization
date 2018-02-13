@@ -2,7 +2,7 @@ from gurobipy import *
 import numpy as np
 
 
-def ex114a():
+def problem1():
 
     m = Model("mip1")
 
@@ -12,16 +12,14 @@ def ex114a():
     choice_tuple = m.addVars(n, n, vtype=GRB.BINARY, name="choice")
 
     linear_expression = LinExpr()
-    for row, outer_index in enumerate(choice_tuple):
-        linear_expression.addTerms(cost_matrix[outer_index, :], row)
+    for row_idx in range(n):
+        for col_idx in range(n):
+            linear_expression.addTerms(cost_matrix[row_idx, col_idx], choice_tuple[row_idx, col_idx])
 
-    # m.setObjective(sum(choice_var * cost_matrix[outer_index, inner_index]
-    #                    for choice_var, inner_index in enumerate(row)
-    #                    for row, outer_index in enumerate(choice_tuple)), GRB.MINIMIZE)
 
     m.setObjective(linear_expression, GRB.MINIMIZE)
-    m.addConstrs(sum(x[i, :] for i in range(n)) == 1)
-    m.addConstrs(sum(x[:, i] for i in range(n)) == 1)
+    m.addConstrs(sum(choice_tuple[worker, i] for i in range(n)) == 1 for worker in range(n))
+    m.addConstrs(sum(choice_tuple[i, job] for i in range(n)) == 1 for job in range(n))
 
     m.optimize()
 
