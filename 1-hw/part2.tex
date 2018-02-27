@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,algorithm,algpseudocode,algorithmicx,xfrac}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{subproblem}[1]{\textbf{(#1)}}{}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\begin{document}
+
+%\renewcommand{\qedsymbol}{\filledbox}
+%Good resources for looking up how to do stuff:
+%Binary operators: http://www.access2science.com/latex/Binary.html
+%General help: http://en.wikibooks.org/wiki/LaTeX/Mathematics
+%Or just google stuff
+
+\title{Linear Optimization - Homework 1 Part 2}
+\author{Howie Benefiel \(phb337\)}
+\maketitle
+
+\begin{problem}{2}
+$ $ \newline
+This can be formulated as a linear problem by having $s$ binary choice variables, $z_i$.
+These $z_i$ variables are multiplied by $Ax$ to yield $y$.
+The goal is to minimize $\sum_i^{s} z_i$.
+
+\end{problem}
+
+\begin{problem}{3}
+The code largely speaks for itself, but this is formulated so that there are $len(x) = N$ binary choice variables, $z_i$.
+The problem is constrained so that $\sum_{i=1}^N z_i=r$.
+\end{problem}
+
+\end{document}

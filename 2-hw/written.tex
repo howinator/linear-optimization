@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,algorithm,algpseudocode,algorithmicx,xfrac}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{subproblem}[1]{\textbf{(#1)}}{}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\begin{document}
+
+%\renewcommand{\qedsymbol}{\filledbox}
+%Good resources for looking up how to do stuff:
+%Binary operators: http://www.access2science.com/latex/Binary.html
+%General help: http://en.wikibooks.org/wiki/LaTeX/Mathematics
+%Or just google stuff
+
+\title{Linear Optimization - Homework 2}
+\author{Howie Benefiel \(phb337\)}
+\maketitle
+
+\begin{problem}{1}
+$ $ \newline
+If $Ad=0$, that means $d$ is in the nullspace of $A$.
+This means that the vector $d$ points in a direction which minimizes all variables.
+Heuristically, this observation can be used to argue that only moving in direction which are in the nullspace of $A$ lead to feasible solutions.
+
+Formally,
+\end{problem}
+
+\end{problem}
+
+
+\end{document}
