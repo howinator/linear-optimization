@@ -4,6 +4,7 @@
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\matr}[1]{\mathbf{#1}}
 
 \newenvironment{problem}[2][Problem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
@@ -30,13 +31,133 @@
 \maketitle
 
 \begin{problem}{1}
+\begin{subproblem}{1$^{st}$ Bullet}
 $ $ \newline
-If $Ad=0$, that means $d$ is in the nullspace of $A$.
-This means that the vector $d$ points in a direction which minimizes all variables.
+If $\matr{A}\matr{d}=0$, that means $\matr{d}$ is in the nullspace of $\matr{A}$.
+This means that the vector $\matr{d}$ points in a direction which minimizes all variables.
 Heuristically, this observation can be used to argue that only moving in direction which are in the nullspace of $A$ lead to feasible solutions.
 
-Formally,
+Formally, following the argument on pg. 83,
+if $\matr{d}$ is a feasible direction at $\matr{x}$, that means $\exists  \theta > 0$ s.t. $\matr{x} + \theta \matr{d} \in$ the feasible polyhedron, $P$.
+Since we're only looking for feasible solutions, $\matr{A}(\matr{x} + \theta \matr{d})=\matr{b}$.
+Also, since $x$ is feasible, $\matr{A}\matr{x} = \matr{b}$.
+Since, $\theta > 0$ and subtracting $b$ from both sides, it is apparent $Ad=0$.
+
+Now for the second part of the statement, we're moving in a feasible direction in the polyhedron,
+so $\matr{x}+\theta \matr{d} \geq 0$.
+That means for a given index, $i$, $x_i+\theta d_i \geq 0$.
+Since $\theta > 0$, $d_i \geq 0$ for any index where $x_i=0$. \\
+\end{subproblem}
+
+\begin{subproblem}{2$^{nd}$ Bullet}
+$ $ \\
+We should follow the same analysis as above.
+
+If we can move in the d direction then $\matr{A}(x + \theta \matr{d}) = \matr{b}$.
+Since $\matr{A}\matr{x}=\matr{b}$, those terms cancel leaving $\theta \matr{A} \matr{d} = 0$.
+We divide out $\theta$ leaving $\matr{A}\matr{d}=0$.
+This proves the first statement of the set.
+
+For, $\matr{D}\matr{d} \leq 0$, we again start with the definition of moving in a feasible direction.
+This gives us $\matr{D}(\matr{x}+\theta\matr{d}) \leq \matr{f}$.
+From the problem statement, $\matr{D}\matr{x} \leq \matr{f}$, so those terms cancel.
+That leaves us with $\theta\matr{D}\matr{d} \leq 0$.
+We divide out $\theta$, leaving us with the second statement defining the set, $\matr{D}\matr{d} \leq 0$.
+\end{subproblem}
+
 \end{problem}
+
+
+\begin{problem}{2}
+\begin{subproblem}{1$^{st}$ Bullet}
+The extreme points will be on the axes of the polyhedron.
+That means the extreme points will be $\{(0,0,\sfrac{1}{3}), (0, \sfrac{1}{2}, 0), (1, 0, 0), (0, 0, 0)\}$.
+\end{subproblem}
+
+\begin{subproblem}{2$^{nd}$ Bullet}
+Assuming cost can not be negative,
+\begin{align*}
+\matr{x} = \begin{pmatrix}0 \\ 0 \\ \sfrac{1}{3} \end{pmatrix} \implies \matr{c}=\begin{pmatrix}c_1 \\ c_2 \\ 0 \end{pmatrix}
+\forall c_1, c_2 \\
+\matr{x} = \begin{pmatrix}0 \\ \sfrac{1}{2} \\ 0 \end{pmatrix} \implies \matr{c}=\begin{pmatrix}c_1 \\ 0 \\ c_3 \end{pmatrix}
+\forall c_1, c_3 \\
+\matr{x} = \begin{pmatrix}1 \\ 0 \\ 0 \end{pmatrix} \implies \matr{c}=\begin{pmatrix}0 \\ c_2 \\ c_3 \end{pmatrix}
+\forall c_2, c_3 \\
+\matr{x} = \begin{pmatrix}0 \\ 0 \\ 0 \end{pmatrix} \implies \matr{c}=\begin{pmatrix}c_1 \\ c_2 \\ c_3 \end{pmatrix}
+\forall c_2, c_3
+\end{align*}
+\end{subproblem}
+\end{problem}
+
+\begin{problem}{3.12}
+
+\begin{subproblem}{a}
+In standard form, our problem is described as
+
+\begin{align*}
+\text{minimize \hspace{0.5in}} -2x_1-x_2 \\
+\text{st \hspace{0.5in}} x_1-x_2+x_3 = 2 \\
+x_1 + x_2 + x_4 = 6 \\
+x_1, x_2, x_3, x_4 \geq 0
+\end{align*}
+BFS of $(x_1, x_2) = (0, 0)$ yields a cost of 0 and $x_3 = 2$ and $x_4 = 6$.
+\end{subproblem}
+
+\begin{subproblem}{b}
+\begin{equation}
+\begin{array}{c}
+\\
+  \\
+x_3 \\
+x_4
+\end{array}
+\begin{bmatrix}
+\begin{array}{c|cccc}
+    & x_1 & x_2 & x_3 & x_4 \\ \hline
+  0 & -2 & -1 & 0 & 0 \\ \hline
+  2 & 1^* & -1 & 1 & 0  \\
+  6 & 1 & 1 & 0 & 1 \\
+\end{array}
+\end{bmatrix}
+\end{equation}
+$ $ \\
+\begin{equation}
+\begin{array}{c}
+\\
+  \\
+x_1 \\
+x_4
+\end{array}
+\begin{bmatrix}
+\begin{array}{c|cccc}
+    & x_1 & x_2 & x_3 & x_4 \\ \hline
+  4 & 0 & -3 & 2 & 0 \\ \hline
+  2 & 1 & -1 & 1 & 0  \\
+  4 & 0 & 2^* & -1 & 1 \\
+\end{array}
+\end{bmatrix}
+\end{equation}
+$ $ \\
+\begin{equation}
+\begin{array}{c}
+\\
+  \\
+x_1 \\
+x_2
+\end{array}
+\begin{bmatrix}
+\begin{array}{c|cccc}
+    & x_1 & x_2 & x_3 & x_4 \\ \hline
+  10 & 0 & 0 & 0.5 & 1.5 \\ \hline
+  6 & 1 & 0 & .5 & .5  \\
+  2 & 0 & 1 & -0.5 & 0.5 \\
+\end{array}
+\end{bmatrix}
+\end{equation}
+That means we have an optimal solution at $x_1=6, x_2=2$.
+
+\end{subproblem}
+
 
 \end{problem}
 
