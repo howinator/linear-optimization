@@ -1,0 +1,207 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,algorithm,algpseudocode,algorithmicx,xfrac,graphicx}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\matr}[1]{\mathbf{#1}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{subproblem}[1]{\textbf{(#1)}}{}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+
+\begin{document}
+
+%\renewcommand{\qedsymbol}{\filledbox}
+%Good resources for looking up how to do stuff:
+%Binary operators: http://www.access2science.com/latex/Binary.html
+%General help: http://en.wikibooks.org/wiki/LaTeX/Mathematics
+%Or just google stuff
+
+\title{Linear Optimization - Homework 3}
+\author{Howie Benefiel \(phb337\)}
+\maketitle
+
+\begin{problem}{1}
+
+\begin{subproblem}{1$^{st}$ Bullet}
+$ $ \newline
+To keep our problem linear, we cannot let our decision variables be  $Z$.
+Instead we make our decision variables $p_0, p_1,...,p_k$.
+We can think about the first two moments as vertices of the bounding polyhedron in a linear program.
+The other vertices would come from the fact that $\sum^K_{k=0} p_k=1$, $p_0, p_1,...p_k >= 0$.
+We can then make our objective function $E[Z]=\sum^K_{k=0} k^4p_k$.
+We can then minimize and maximize our objective function.
+\end{subproblem}
+
+\begin{subproblem}{2$^{nd}$ Bullet}
+We take our original formulation and instead optimize $p_4 + p_5 + p_6$.
+We minimize and maximize this function to give upper and lower bounds on the probability that $Z$ takes values in the set $\{4,5,6\}$.
+\end{subproblem}
+
+\begin{subproblem}{3$^rd$ Bullet}
+Our problem becomes
+\begin{align*}
+\text{min, max \hspace{0.5in}}(E[Z]y_1 + E[Z^2]y_2) \\
+\text{st \hspace{0.75in}} 4y_1+16y_2 \leq 1 \\
+5y_1 + 25y_2 \leq 1 \\
+6y_1 + 36y_2 \leq 1
+\end{align*}
+\end{subproblem}
+
+\end{problem}
+
+
+\begin{problem}{2}
+\begin{align*}
+\text{max \hspace{1in}} 3p_2+6p_3 \\
+\text{st \hspace{0.5in}} 2p_1+3p_2-3p_3 \geq 1 \\
+3p_1+p_2-p_3 \leq 1 \\
+-p_1+4p_2+2p_3 \leq 0 \\
+p_1-2p_2+p_3=0 \\
+p_1 \geq 0, p_2\leq0, p_3 \text{free}
+\end{align*}
+\end{problem}
+
+
+\begin{problem}{3}
+You can use this subroutine by setting the objective function of the primal equal to the objective function of the dual while also inputting all the constraints into the subroutine.
+Solving this system gives us the optimal solution from strong duality.
+\end{problem}
+
+\begin{problem}{4}
+
+\begin{subproblem}{a}
+\begin{align*}
+\text{min \hspace{1in}} \sum^T_{t=1} p_tb_t \\
+\text{st \hspace{1.5in}} p_t+q_t \leq \alpha^{t-1}d_t \hspace{0.5in} t=1,...,T \\
+p_t-fq_t \leq -\alpha^{t-1}c \hspace{0.5in} t=1,...,T \\
+-p_t+q_t \leq 0 \hspace{0.5in} t=1,...,T \\
+-q_t \leq 0 \hspace{0.3in} t=1,...,T-1 \\
+-q_t \leq \alpha^td_{T+1} \hspace{0.8in} t=T \\
+p_t \text{ and } q_t \text{ free}
+\end{align*}
+\end{subproblem}
+
+\begin{subproblem}{b}
+If we re-arrange all the constraints in the dual such that our dual decision variables are less than some value.
+Since our objective function is a function of these decision variables, if we maximize the negative our decision variables, we minimize the objective function.
+\end{subproblem}
+
+\begin{subproblem}{c}
+Because of strong duality, the solution to the dual gives the optimal solution to the primal.
+\end{subproblem}
+
+\end{problem}
+
+
+\begin{problem}{5}
+
+\begin{subproblem}{a}
+Our decision variables are $m_i$, the quantity of lamps manufactured in month $i$,
+$p_i$, the number of lamps purchased from company C in period $i$,
+and $h_i$, the number of lamps held at the end of period $i$.
+
+And our LP is
+\begin{align*}
+\text{min \hspace{0.5in}} 35\sum^4_{i=1}m_i+50\sum^4_{i=1}p_i+5\sum^4_{i=1}h_i \\
+\text{st \hspace{1.2in}} m_1+p_1-h_1=150 \\
+m_2+p_2+h_1-h_2=160 \\
+m_3+p_3+h_2-h_3=225 \\
+m_4+p_4+h_3-h_4=180 \\
+m_i \leq 160 \hspace{0.1in} \forall i \\
+m_i, p_i, h_i \geq 0 \hspace{0.1in} \forall i
+\end{align*}
+\end{subproblem}
+
+\begin{subproblem}{b}
+The number of manufactured lamps should be maximized at every month ($m_i=160 \forall i$).
+No lamps should be purchased the first two months, but lamps should be purchased the other months ($p_1=0$, $p_2=0$, $p_3=55$, and $p_i=20$).
+Finally, lamps should be held the first two months ($h_1=10$, $h_2=10$, $h_3=0$, and $h_4=0$).
+\end{subproblem}
+
+\begin{subproblem}{c}
+We can answer this question question by looking at the shadow prices for each month.
+By multiplying the shadow price for each month by the decrease in production, we will get the total cost for doing maintenance in that month.
+Doing this, we get a cost of $\$45$ for Jan., $\$70$ for Feb., $\$75$ in March.
+This means we should do the maintenance in January.
+\end{subproblem}
+
+\begin{subproblem}{d}
+This subproblem can be used via simple analysis.
+We don't need to purchase any lamps during January and February because our manufacturing capacity is greater than or equal to demand.
+In March, we purchase 55 lamps from company C.
+Since company D is selling us lamps for cheaper, it makes sense to buy 50 lamps from company D and 5 from company C.
+This results in savings of $\$250$.
+\end{subproblem}
+
+\begin{subproblem}{e}
+This problem can be answered by looking at the reduced cost of $p_2$ which is $\$5$.
+That means that if the supplier gives us a discount of more than $\$5$ will make it economical for us to buy lamps from them during February.
+\end{subproblem}
+
+\begin{subproblem}{f}
+Again, looking at the reduced cost, but this time on storage cost, we determine that the cost would have to be at least $\$10$ for us to change our solution.
+Since $8 < 10$, our solution stays the same, but our cost increases.
+\end{subproblem}
+
+\begin{subproblem}{g}
+This changes the number of lamps we purchase from company C.
+We still maximize the number of lamps manufactured, but we store our remaining lamps after February.
+This means we should only buy 5 lamps total and we should do this in April.
+\end{subproblem}
+
+\end{problem}
+
+\begin{problem}{6}
+
+\begin{subproblem}{a}
+We add constraints of the form $s_{i,x,1} - s_{i,x,2} = a_i^Tx-b_{x,i}$ (and likewise for y) to our formulation.
+We can then optimize the given optimization function without absolute values which gives us a linear formulation.
+Put another way this problem is equivalent to
+\begin{align*}
+\text{min \hspace{0.5in}} \matr{1}^Ts_x + \matr{1}^Ts_y \\
+\text{st \hspace{0.5in}} \matr{A}x -b_x \leq s_x \\
+\matr{A}x-b_x \geq -s_x \\
+\matr{A}y-b_y \leq s_y \\
+\matr{A}y-b_y \geq -s_y
+\end{align*}
+
+This is the $l_{\infty}$ norm which we can optimize by minimizing an auxiliary variable, $t$ then changing our constraints.
+This gives us an LP of
+
+\begin{align*}
+\text{min \hspace{0.5in}} t_x+ t_y \\
+\text{st \hspace{0.5in}} \matr{A}x -b_x \leq t_x\matr{1} \\
+\matr{A}x-b_x \geq -t_x\matr{1} \\
+\matr{A}y-b_y \leq t_y\matr{1} \\
+\matr{A}y-b_y \geq -t_y\matr{1}
+\end{align*}
+
+\end{subproblem}
+
+\end{problem}
+
+
+\begin{problem}{7}
+\begin{subproblem}{a}
+Again this is $l_1$ norm, but this time, the norm is on the constraint.
+In general $l_1$ norms are not convex, but this is just saying the $l_1$ norm is less than 1.
+Since the $l_1$ norm is bounded on bottom by $0$ and is smooth, we can re-write the constraint as
+$\matr{A}x+b \geq 0$ and $\matr{A}x+b \leq 1$.
+\end{subproblem}
+
+\end{problem}
+
+
+
+
+\end{document}

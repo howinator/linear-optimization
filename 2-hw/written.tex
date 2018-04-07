@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
  \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,algorithm,algpseudocode,algorithmicx,xfrac}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,algorithm,algpseudocode,algorithmicx,xfrac,graphicx}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -33,9 +33,6 @@
 \begin{problem}{1}
 \begin{subproblem}{1$^{st}$ Bullet}
 $ $ \newline
-If $\matr{A}\matr{d}=0$, that means $\matr{d}$ is in the nullspace of $\matr{A}$.
-This means that the vector $\matr{d}$ points in a direction which minimizes all variables.
-Heuristically, this observation can be used to argue that only moving in direction which are in the nullspace of $A$ lead to feasible solutions.
 
 Formally, following the argument on pg. 83,
 if $\matr{d}$ is a feasible direction at $\matr{x}$, that means $\exists  \theta > 0$ s.t. $\matr{x} + \theta \matr{d} \in$ the feasible polyhedron, $P$.
@@ -149,12 +146,12 @@ x_2
 \begin{array}{c|cccc}
     & x_1 & x_2 & x_3 & x_4 \\ \hline
   10 & 0 & 0 & 0.5 & 1.5 \\ \hline
-  6 & 1 & 0 & .5 & .5  \\
+  4 & 1 & 0 & .5 & .5  \\
   2 & 0 & 1 & -0.5 & 0.5 \\
 \end{array}
 \end{bmatrix}
 \end{equation}
-That means we have an optimal solution at $x_1=6, x_2=2$.
+That means we have an optimal solution at $x_1=4, x_2=2$.
 
 \end{subproblem}
 
@@ -332,6 +329,45 @@ x_3
 \end{equation}
 $ $ \\
 
+\end{problem}
+
+\begin{problem}{5}
+
+\begin{subproblem}{a}
+\begin{equation}
+\begin{array}{c}
+\\
+  \\
+x_1 \\
+x_2 \\
+x_3
+\end{array}
+\begin{bmatrix} % This needs to be finished (top row is done)
+\begin{array}{c|ccccc}
+    & x_1 & x_2 & x_3 & x_4 & x_5 \\ \hline
+  339,000,000 & 0 & 30,000,000 & 309,000,000 & 0 & 0 \\ \hline
+  0 & 1 & 0 & 0 & 0 & 0  \\
+  500,000 & 0 & 1 & 0 & 0 & 0  \\
+  1,500,000 & 0 & 0 & 1 & 0 & 0  \\
+\end{array}
+\end{bmatrix}
+\end{equation}
+$ $ \\
+\end{subproblem}
+
+\begin{subproblem}{b}
+The price of gasoline can go arbitrarily high because that does not change the geometry of the solution.
+\end{subproblem}
+\end{problem}
+
+\begin{problem}{6}
+We formulate this as a transportation problem.
+The supplier nodes $\mathcal{S}$ will be the teams with ``supply'' or number of wins $\matr{x}=(x_1, x_2, ..., x_n)$.
+The consumer nodes, $\mathcal{C}$, will be games between $S_i$ and $S_j$.
+That means there will be a total number of $\frac{n(n-1)k}{2}$ which is equal to $\sum_{i=1}^n x_i$.
+The arcs are between nodes in $\mathcal{S}$ and $\mathcal{C}$ and they represent the number of games won by $i$ against team $j$.
+We then solve the transportation problem for a our test vector $\matr{x}$.
+If the problem for $\matr{x}$ is feasible then $\matr{x}$ is a valid solution.
 \end{problem}
 
 
